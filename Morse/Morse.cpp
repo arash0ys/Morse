@@ -5,7 +5,9 @@
 #include <iostream>
 #include <Windows.h>
 #define U 150
-int Codes[26][5] = {
+
+
+int Codes[][5] = {
 	{'A', 'a', 1, -1, 0},
 	{'B', 'b', -1, 3, 0},
 	{'D', 'd', -1, 2, 0},
@@ -30,7 +32,17 @@ int Codes[26][5] = {
 	{'W', 'w', 0, -2, 0},
 	{'X', 'x', -1, 2, -1},
 	{'Y', 'y', -1, 1, -2},
-	{'Z', 'z', -2, 2, 0}
+	{'Z', 'z', -2, 2, 0},
+	{'1', '1', 1, -4, 0 },
+	{'2', '2', 2, -3, 0},
+	{'3', '3', 3, -2, 0},
+	{'4', '4', 4, -1, 0},
+	{'5', '5', 5, 0, 0},
+	{'6', '6', -1, 4, 0},
+	{'7', '7', -2, 3, 0},
+	{'8', '8', -3, 2, 0},
+	{'9', '9', -4, 1, 0},
+	{'0', '0', -5, 0, 0}
 };
 
 
@@ -81,22 +93,24 @@ void Morse(int m1, int m2, int m3) {
 
 int main()
 {
+	int rows = sizeof(Codes) / sizeof(Codes[0]);
+
+	printf("Type anything you like:\n");
+	printf("=================================\n");
+	
 	while (1) {
 		pher = getchar();
 
-		for (int i = 0; i < 25; i++)
+		for (int i = 0; i < rows; i++)
 		{
 			for (int j = 0; j < 2; j++)
 			{
-
 				if (pher == Codes[i][j])
 				{
 					Morse(Codes[i][2], Codes[i][3], Codes[i][4]);
 					Sleep(3 * U);
 					break;
 				}
-
-
 			}
 		}
 
@@ -110,8 +124,6 @@ int main()
 		{
 			Sleep(7 * U);
 		}
-
-
 
 	}
 }
